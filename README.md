@@ -103,9 +103,9 @@ Update(1) --> void Update(T entity);
 Delete(1) --> void Delete(int id);
 ```     
 
-[Migrations Overview - TR](https://learn.microsoft.com/tr-tr/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
-[Migrations Overview - EN](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
-[Design-Patterns - Tasarım Desenleri](https://refactoring.guru/design-patterns/structural-patterns)
+[Migrations Overview - TR](https://learn.microsoft.com/tr-tr/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)     
+[Migrations Overview - EN](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)      
+[Design-Patterns - Tasarım Desenleri](https://refactoring.guru/design-patterns/structural-patterns)    
 
 					  
 
