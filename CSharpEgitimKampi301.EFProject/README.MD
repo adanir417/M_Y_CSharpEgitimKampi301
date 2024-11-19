@@ -10,6 +10,7 @@ Adım adım ders içerisinde yapılanlar:
 |Tablo adı|
 |:--:|
 Customer
+
 |Column Name|Data Type|Allow Nulls|
 |:--:|:--:|:--:|
 **CustomerId**|[**int**]|[**false**]|
