@@ -20,8 +20,8 @@ Bu ders içerisinde bunları anladım.
 
 ---    
 ### :green_circle: Ders 12 - OOP Modülü: Data Access Katmanı ve Context Sınıfı    
-Sınıflar arası ilişkilendirmelerin gerçek hayata benzer şekilde yazılımını anladım. Katmanlar arası haberleşmenin referanslar aracılığı    
-ile olduğunu anladım. Veritabanına bağlantı kuracak Context sınıfının tanımlanması ve bu sınıf içerisinde tablo adlarının çoğul, sınıf adlarının     
+Sınıflar arası ilişkilendirmelerin gerçek hayata benzer şekilde yazılımını anladım. Katmanlar arası haberleşmenin referanslar aracılığı 
+ile olduğunu anladım. Veritabanına bağlantı kuracak Context sınıfının tanımlanması ve bu sınıf içerisinde tablo adlarının çoğul, sınıf adlarının
 tekil şekilde kullanıldığını öğredim.     
 
 Örnek:    
@@ -47,9 +47,9 @@ Add tag'ının "/>" ile kapandığına dikkat edelim.
 </configuration>
 ```     
 
-Proje üzerine paket yöneticisi ile paket eklemeyi öğrendim. Gerekli paketlerin eklendikten sonra referansları üzerinden yüklenip yüklenmediğini     
-kontrol edebildiğimizi öğrendim. Virtual keyword'unu ilişkilendirmede kullandık. Bu anahtar kelime property, method, indexer ve etkinlik tanımının    
-üzerinde overridden kullanımına izin veren yapıyı oluşturur. Yani onu miras alan sınıfta değişikliği sağlanabilir. Daha fazla bilgi için linkler     
+Proje üzerine paket yöneticisi ile paket eklemeyi öğrendim. Gerekli paketlerin eklendikten sonra referansları üzerinden yüklenip yüklenmediğini 
+kontrol edebildiğimizi öğrendim. Virtual keyword'unu ilişkilendirmede kullandık. Bu anahtar kelime property, method, indexer ve etkinlik tanımının 
+üzerinde overridden kullanımına izin veren yapıyı oluşturur. Yani onu miras alan sınıfta değişikliği sağlanabilir. Daha fazla bilgi için linkler 
 ziyaret edilebilir.
 
 
@@ -78,7 +78,7 @@ add-migration MigrationADI --> Verilen isimde bir migration oluşturur.
 
 
 Repository Pattern uygulanışı gösterildi. DataAccessLayer içerisindeki Abstract klasörüne önce     
-IGenericDal isimli bir interface oluşturduk ve access modifier'ı public şekilde değiştirdik. Beş(5) adet metod yazdık.    
+IGenericDal isimli bir interface oluşturduk ve access modifier'ı public şekilde değiştirdik. IGenericDal için Beş(5) adet metot yazdık.    
 Daha sonra aynı klasöre EntityLayer içindeki Concrete klasöründeki entity sınıfları için sırası ile     
 I + SINIFADI + Dal şeklinde interfaceler oluşturduk. Örnek IAdminDal, ICustomerDal, IProductDal...    
 Erişim belirleyicileri public'e alındı ve IGenericDal< EntityADI > miras alındı.    
@@ -96,16 +96,44 @@ public interface IAdminDal:IGenericDal<Admin>
     }
 ```
 
+IGenericDal(Yazılan metotlar) -->
 ```csharp
 Create(1) --> void Insert(T entity);
 Read(2) --> T GetById(int id) , List<T> GetAll();
 Update(1) --> void Update(T entity);
 Delete(1) --> void Delete(int id);
-```     
+```   
+
+IGenericDal (Sınıf gösterimi) -->     
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharpEgitimKampi301.DataAccessLayer.Abstract
+{
+    public interface IGenericDal<T> where T : class
+    {    
+        void Insert(T entity);
+        
+        T GetById(int id);
+        
+        List<T> GetAll();
+     
+        void Update(T entity);
+        
+        void Delete(int id);     
+    }
+}
+```    
 
 [Migrations Overview - TR](https://learn.microsoft.com/tr-tr/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)     
 [Migrations Overview - EN](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)      
 [Design-Patterns - Tasarım Desenleri](https://refactoring.guru/design-patterns/structural-patterns)    
 
 					  
-
+---    
+### :green_circle: Ders 14 - Orm Yapısı: Entity Framework DbFirst ve Model Oluşturma    
+    
