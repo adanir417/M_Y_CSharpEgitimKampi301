@@ -13,10 +13,38 @@ Customer
 
 |Column Name|Data Type|Allow Nulls|
 |:--:|:--:|:--:|
-**CustomerId**|[**int**]|[**false**]|
+**CustomerId**|**int**|**false**|
 **CustomerName**|**nvarchar(50)**|**true**|
 **CustomerSurname**|**nvarchar(50)**|**true**|    
 
+*(Primary Key and auto increment)    
 
+|Tablo adı|
+|:--:|
+Guide
+
+|Column Name|Data Type|Allow Nulls|
+|:--:|:--:|:--:|
+**GuideId**|**int**|**false**|
+**GuideName**|**nvarchar(50)**|**true**|
+**GuideSurname**|**nvarchar(50)**|**true**|    
+
+*(Primary Key and auto increment)    
+
+|Tablo adı|
+|:--:|
+Location
+
+|Column Name|Data Type|Allow Nulls|
+|:--:|:--:|:--:|
+**LocationId**|**int**|**false**|
+**City**|**nvarchar(50)**|**true**|
+**Country**|**nvarchar(50)**|**true**|
+**Capacity**|**tinyint**|**true**|
+**Price**|**decimal(18, 2)**|**true**|
+**DayNight**|**nvarchar(50)**|**true**|
+**GuideId**|**int**|**true**|    
+
+*(Primary Key and auto increment)
 	
 	
