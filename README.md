@@ -136,4 +136,6 @@ namespace CSharpEgitimKampi301.DataAccessLayer.Abstract
 					  
 ---    
 ### :green_circle: Ders 14 - Orm Yapısı: Entity Framework DbFirst ve Model Oluşturma    
+### :green_circle: Ders 15 - Entity Framework Metotları ile Proje Uygulaması 
+[Açıklamalar içeride](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/tree/master/CSharpEgitimKampi301.EFProject)
     
