@@ -12,7 +12,7 @@ Adım adım ders içerisinde yapılanlar:
 Customer
 |Column Name|Data Type|Allow Nulls|
 |:--:|:--:|:--:|
-**CustomerId**|**int**|**false**|
+**CustomerId**|[**int**]|[**false**]|
 **CustomerName**|**nvarchar(50)**|**true**|
 **CustomerSurname**|**nvarchar(50)**|**true**|    
 
