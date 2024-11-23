@@ -343,14 +343,14 @@ namespace CSharpEgitimKampi301.EFProject
 ```     
 
 ### - Ders 16...    
-23-) FrmLocation adı ile projemizde yeni bir form oluşturduk.
-24-) Sütun sayısı kadar 7 label ekledik. karşılarında ise 5 textbox, Kapasiteye karşılık gelen numericUpDown ve Rehbere karşılık gelen yere ComboBox ekledik.
-25-) Normalde 5 buton fakat ben denemeler yaptım ve 6 buton ekledim.
-26-) İncelemek için [FrmLocation.cs](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/tree/master/CSharpEgitimKampi301.EFProject/FrmLocation.cs)
-27-) Eğitim kampı içinde kullanılan Select içinde yeni bir anonim sınıf oluşturmak yerine GuidePOCO isminde bir obje oluşturdum. 
+23-) FrmLocation adı ile projemizde yeni bir form oluşturduk.     
+24-) Sütun sayısı kadar 7 label ekledik. karşılarında ise 5 textbox, Kapasiteye karşılık gelen numericUpDown ve Rehbere karşılık gelen yere ComboBox ekledik.      
+25-) Normalde 5 buton fakat ben denemeler yaptım ve 6 buton ekledim.     
+26-) İncelemek için [FrmLocation.cs](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/tree/master/CSharpEgitimKampi301.EFProject/FrmLocation.cs)      
+27-) Eğitim kampı içinde kullanılan Select içinde yeni bir anonim sınıf oluşturmak yerine GuidePOCO isminde bir obje oluşturdum.      
 28-) Oluşturduğum bu pojolar için bir liste ve verilerin kopyalanması için ayrı metotlar oluşturdum. Bu işlem yükünü arttırdı ve performansı düşürdü. Fakat öğrenme açısında güzel oldu.
-new { } ile anonim obje'nin avantajını bu şekilde anlamış olduk. Burada var tanımlı olduğu için liste bir Location listesi değil new { } ile tanımlanan nesnelerin listesi haline gelmiş oldu.
-29-) Proje'nin geri kalanı Guide kısmına benzer şekilde işlendi.
+new { } ile anonim obje'nin avantajını bu şekilde anlamış olduk. Burada var tanımlı olduğu için liste bir Location listesi değil new { } ile tanımlanan nesnelerin listesi haline gelmiş oldu.       
+29-) Proje'nin geri kalanı Guide kısmına benzer şekilde işlendi.    
 
 
 ```csharp
@@ -365,11 +365,11 @@ var guideList = db.Guide.Select(x => new
 
 
 ### - Ders 17...    
-30-) FrmStatistics adı ile projemize yeni bir form oluşturduk.
-30-) Oluşturduğumuz form içine bir panel ve iki label panel içinde alt alta gelecek şekilde penceremize yerleştirdik. 
-Yanyana 4 adet panel ve alt alta 3 sıra olacak şekilde 4 x 3 = 12 adet panel içeriğimiz oldu. 
-30-) İlk label(etiket)'e lbl_TitleLocationCount ve ikinci label(etiket)'e lbl_ValueLocationCount olarak adlandırmayı tercih ettim.
-30-) Linq sorguları ile istatistik bilgilerimizi çıkartma aşamasına geçtik.
+30-) FrmStatistics adı ile projemize yeni bir form oluşturduk.      
+31-) Oluşturduğumuz form içine bir panel ve iki label panel içinde alt alta gelecek şekilde penceremize yerleştirdik.     
+Yanyana 4 adet panel ve alt alta 3 sıra olacak şekilde 4 x 3 = 12 adet panel içeriğimiz oldu.     
+32-) İlk label(etiket)'e lbl_TitleLocationCount ve ikinci label(etiket)'e lbl_ValueLocationCount olarak adlandırmayı tercih ettim.    
+33-) Linq sorguları ile istatistik bilgilerimizi çıkartma aşamasına geçtik.    
 
 ```csharp
  private void FrmStatistics_Load(object sender, EventArgs e)
