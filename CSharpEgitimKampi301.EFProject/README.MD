@@ -1,6 +1,9 @@
 ﻿## CharpEgitimKampi301.EFProject     
 ---    
 ### Entity Framework Çalışmaları.    
+---
+---
+### - Ders 16...   
 Adım adım ders içerisinde yapılanlar:    
 1-) Windows Forms App (.Net Framework) Projesi solution içerisine CSharpEgitimKampi301.EFProject adı ile oluşturuldu.    
 2-) SQL Server Management Studio ile bu projeye özel bir veritabanı hazırlıyoruz.     
@@ -61,6 +64,7 @@ Location
   </connectionStrings>
 ```
 10-) App.config içerisinde bağlantı adımız yukarıda görüldüğü üzere EgitimKampiEfTravelDbEntities olarak eklenmiş.      
+### - Ders 15...     
 11-) SQL Server Management Studio'a geri dönerek Customer tablomuza CustomerBalance adında yeni bir sütun ekliyoruz.Bunun için Customer Tablosu sağ tuş tık >> Design
 
 |Tablo adı|
@@ -336,5 +340,108 @@ namespace CSharpEgitimKampi301.EFProject
 }
 
 
+```     
+
+### - Ders 16...    
+23-) FrmLocation adı ile projemizde yeni bir form oluşturduk.
+24-) Sütun sayısı kadar 7 label ekledik. karşılarında ise 5 textbox, Kapasiteye karşılık gelen numericUpDown ve Rehbere karşılık gelen yere ComboBox ekledik.
+25-) Normalde 5 buton fakat ben denemeler yaptım ve 6 buton ekledim.
+26-) İncelemek için [FrmLocation.cs](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/tree/master/CSharpEgitimKampi301.EFProject/FrmLocation.cs)
+27-) Eğitim kampı içinde kullanılan Select içinde yeni bir anonim sınıf oluşturmak yerine GuidePOCO isminde bir obje oluşturdum. 
+28-) Oluşturduğum bu pojolar için bir liste ve verilerin kopyalanması için ayrı metotlar oluşturdum. Bu işlem yükünü arttırdı ve performansı düşürdü. Fakat öğrenme açısında güzel oldu.
+new { } ile anonim obje'nin avantajını bu şekilde anlamış olduk. Burada var tanımlı olduğu için liste bir Location listesi değil new { } ile tanımlanan nesnelerin listesi haline gelmiş oldu.
+29-) Proje'nin geri kalanı Guide kısmına benzer şekilde işlendi.
+
+
+```csharp
+var guideList = db.Guide.Select(x => new
+           {
+                FullName = x.GuideName + " " + x.GuideSurname,
+                x.GuideId
+
+            }).ToList();
+```    
+
+
+
+### - Ders 17...    
+30-) FrmStatistics adı ile projemize yeni bir form oluşturduk.
+30-) Oluşturduğumuz form içine bir panel ve iki label panel içinde alt alta gelecek şekilde penceremize yerleştirdik. 
+Yanyana 4 adet panel ve alt alta 3 sıra olacak şekilde 4 x 3 = 12 adet panel içeriğimiz oldu. 
+30-) İlk label(etiket)'e lbl_TitleLocationCount ve ikinci label(etiket)'e lbl_ValueLocationCount olarak adlandırmayı tercih ettim.
+30-) Linq sorguları ile istatistik bilgilerimizi çıkartma aşamasına geçtik.
+
+```csharp
+ private void FrmStatistics_Load(object sender, EventArgs e)
+        {
+            // Toplam Konum Sayısı
+            lbl_ValueLocationCount.Text = db.Location.Count().ToString();
+
+            // Toplam Kapasite
+            lbl_ValueTotalCapacity.Text = db.Location.Sum(x => x.Capacity).ToString();
+
+            // Rehber Sayısı
+            lbl_ValueGuideCount.Text = db.Guide.Count().ToString();
+
+            // Ortalama Tur Kapasitesi
+            var formattedAverageCapacity = db.Location.Average(x => x.Capacity);
+            lbl_ValueAverageCapacity.Text = $"{formattedAverageCapacity:N0}";
+
+            /*
+              
+             // Bu yapıya string interpolation adı veriliyor. 
+             $"{degiskenADI}"
+
+            // Bu yapı içinde düzelenmek(formatlanmak) istenen yapılar kolaylıkla formatlanabiliyor.
+
+            // Örnek üzerinde N - Number Format uygulanmıştır. Ve Format ifadesinden sonra gelen 0 genellikle virgül sonrası karakteri ifade eder.
+            // N2 kullanılsa virgün sonrası 2 karakter gösterecektir.
+
+
+             */
+
+            // Ortalama Tur Fiyatı
+            lbl_ValueAverageLocationPrice.Text = $"{db.Location.Average(x => x.Price):N2} ₺";
+
+            // Eklenen Son Ülke
+            //var allLocation = db.Location.ToList();
+            //allLocation.Reverse();
+            //var lastLocation = allLocation.FirstOrDefault().Country;            
+            //lbl_ValueAddedLastCountry.Text = lastLocation;
+
+            var lastId = db.Location.Max(x => x.LocationId);
+            lbl_ValueAddedLastCountry.Text = db.Location.Where(x => x.LocationId == lastId).Select(x => x.Country).FirstOrDefault().ToString();
+
+
+            // Kapadokya Tur Kapasitesi
+            lbl_ValueCappadociaCapacity.Text = db.Location.Where(x => x.City.ToLower() == "Kapadokya".ToLower()).Select(x => x.Capacity).FirstOrDefault().ToString();
+
+            // Türkiye Turları Ortalama Kapasite
+            lbl_ValueTurkiyeAverageCapacity.Text = $"{db.Location.Where(x => x.Country.ToLower() == "Türkiye".ToLower()).Average(x => x.Capacity):N0}";
+
+            // Türkiye Turları Sayısı
+            lbl_ValueTurkiyeCount.Text = db.Location.Where(x => x.Country.ToLower() == "Türkiye".ToLower()).LongCount().ToString();
+
+            // Roma Gezi Rehberi
+            var guideId = db.Location.Where(x => x.City.ToLower() == "Roma".ToLower()).Select(x=> x.GuideId).FirstOrDefault();
+            lbl_ValueRomeGuideName.Text = db.Guide.Where(x => x.GuideId == guideId).Select(x=> x.GuideName + " " + x.GuideSurname).FirstOrDefault().ToString();
+
+
+            // En Yüksek Kapasiteli Tur
+            var highestCapacity = db.Location.Max(x => x.Capacity);
+            lbl_ValueHighestCapacityLocation.Text = db.Location.Where(x => x.Capacity == highestCapacity).Select(x => x.City).FirstOrDefault().ToString() ;
+
+
+            // En Yüksek Fiyatlı Tur
+            var highestPrice = db.Location.Max(y => y.Price);
+            lbl_ValueHighestPriceLocation.Text = db.Location.Where(x => x.Price == highestPrice).Select(x => x.City).FirstOrDefault().ToString();
+
+            // Ayşegül ÇINAR'ın Rehberi Olduğu Tur Sayısı
+            var aysegulGuideId = db.Guide.Where(x => x.GuideName == "Ayşegül").Select(x => x.GuideId).FirstOrDefault();
+            lbl_ValueAysegulCinarLocationCount.Text = db.Location.Where(x => x.GuideId == aysegulGuideId).LongCount().ToString();
+
+        }
 ```
 
+[string interpolation](https://www.w3schools.com/cs/cs_strings_interpol.php)
+[Microsoft - String interpolation using $](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated)

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CSharpEgitimKampi301.EFProject
 {
-    public partial class Form1 : Form
+    public partial class FrmGuide : Form
     {
-        public Form1()
+        public FrmGuide()
         {
             InitializeComponent();
             List();
@@ -23,7 +23,11 @@ namespace CSharpEgitimKampi301.EFProject
         private void List()
         {
             var allGuideTable = db.Guide.ToList();
-            dataGridView1.DataSource = allGuideTable;
+            dataGridView_Guide.DataSource = allGuideTable;
+            dataGridView_Guide.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(75, 75, 75);
+            dataGridView_Guide.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(75, 75, 75);
+            dataGridView_Guide.DefaultCellStyle.BackColor = Color.FromArgb(75, 75, 75);
+            dataGridView_Guide.DefaultCellStyle.ForeColor = Color.White;
         }
 
         private void btn_List_Click(object sender, EventArgs e)
@@ -31,7 +35,7 @@ namespace CSharpEgitimKampi301.EFProject
             //EgitimKampiEfTravelDbEntities db = new EgitimKampiEfTravelDbEntities();
 
             //var allGuideTable = db.Guide.ToList();
-            //dataGridView1.DataSource = allGuideTable;
+            //dataGridView_Guide.DataSource = allGuideTable;
 
             List();
         }
@@ -97,8 +101,8 @@ namespace CSharpEgitimKampi301.EFProject
                 var answer = MessageBox.Show("Doğru kişiyi seçtiğinizden emin misiniz?", "Kişi Seçimi", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (answer == DialogResult.Yes)
                 {
-                    int rowindex = dataGridView1.CurrentCell.RowIndex;
-                    var id = dataGridView1.Rows[rowindex].Cells["GuideId"].Value;
+                    int rowindex = dataGridView_Guide.CurrentCell.RowIndex;
+                    var id = dataGridView_Guide.Rows[rowindex].Cells["GuideId"].Value;
                     var guide = db.Guide.Find(id);
                     db.Guide.Remove(guide);
                     db.SaveChanges();
@@ -125,8 +129,8 @@ namespace CSharpEgitimKampi301.EFProject
             var answer = MessageBox.Show("Doğru kişiyi seçtiğinizden emin misiniz?", "Kişi Seçimi", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (answer == DialogResult.Yes)
             {
-                int rowindex = dataGridView1.CurrentCell.RowIndex;
-                var id = dataGridView1.Rows[rowindex].Cells["GuideId"].Value;
+                int rowindex = dataGridView_Guide.CurrentCell.RowIndex;
+                var id = dataGridView_Guide.Rows[rowindex].Cells["GuideId"].Value;
                 var guide = db.Guide.Find(id);
                 guide.GuideName = txtbox_RehberAdi.Text;
                 guide.GuideSurname = txtbox_RehberSoyadi.Text;
@@ -141,7 +145,13 @@ namespace CSharpEgitimKampi301.EFProject
         {
             int id = int.Parse(txtbox_RehberId.Text);
             var values = db.Guide.Where(x => x.GuideId == id).ToList();
-            dataGridView1.DataSource = values;
+            dataGridView_Guide.DataSource = values;
+        }
+
+        public void FrmGuide_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FrmMain main = new FrmMain();
+            main.Show();
         }
     }
 }

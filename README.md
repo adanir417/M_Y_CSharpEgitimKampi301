@@ -136,6 +136,17 @@ namespace CSharpEgitimKampi301.DataAccessLayer.Abstract
 					  
 ---    
 ### :green_circle: Ders 14 - Orm Yapısı: Entity Framework DbFirst ve Model Oluşturma    
-### :green_circle: Ders 15 - Entity Framework Metotları ile Proje Uygulaması 
-[Açıklamalar içeride](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/tree/master/CSharpEgitimKampi301.EFProject)
+### :green_circle: Ders 15 - Entity Framework Metotları ile Proje Uygulaması    
+### :green_circle: Ders 16 - Entity Framework: Tur Projesi Location İşlemleri    
+### :green_circle: Ders 17 - Entity Framework Metotları ve Linq Sorgular   
+Eğitim kampı içerisinde DBFirst yaklaşımı ile veritabanını projeye dahil etmeyi ve kullanmayı, basitçe form arayüzü oluşturmayı öğrendim.
+[İzlenen yollar ve çeşitli açıklamalar içeride](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/tree/master/CSharpEgitimKampi301.EFProject)     
+### - Main Menu    
+![Main Menu](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/blob/master/CSharpEgitimKampi301.EFProject/pics/MainMenuForm.png)     
+### - Guide Form    
+![Guide Form](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/blob/master/CSharpEgitimKampi301.EFProject/pics/GuideForm.png)      
+### - Location Form  
+![Location Form](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/blob/master/CSharpEgitimKampi301.EFProject/pics/LocationForm.png)      
+### - Statistic Form    
+![Statistic Form](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/blob/master/CSharpEgitimKampi301.EFProject/pics/StatisticForm.png)     
     
