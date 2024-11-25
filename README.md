@@ -139,7 +139,8 @@ namespace CSharpEgitimKampi301.DataAccessLayer.Abstract
 ### :green_circle: Ders 15 - Entity Framework Metotları ile Proje Uygulaması    
 ### :green_circle: Ders 16 - Entity Framework: Tur Projesi Location İşlemleri    
 ### :green_circle: Ders 17 - Entity Framework Metotları ve Linq Sorgular   
-Eğitim kampı içerisinde DBFirst yaklaşımı ile veritabanını projeye dahil etmeyi ve kullanmayı, basitçe form arayüzü oluşturmayı öğrendim.
+Eğitim kampı içerisinde DBFirst yaklaşımı ile veritabanını projeye dahil etmeyi ve kullanmayı, basitçe form arayüzü oluşturmayı öğrendim.    
+Linq kullanarak basit sorgular yazmayı öğrendim. Anonim sınıf oluşturmayı gözlemledim, benim için hala biraz karışık :monocle_face:.     
 [İzlenen yollar ve çeşitli açıklamalar içeride](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/tree/master/CSharpEgitimKampi301.EFProject)     
 ### - Main Menu    
 ![Main Menu](https://github.com/adanir417/M_Y_CSharpEgitimKampi301/blob/master/CSharpEgitimKampi301.EFProject/pics/MainMenuForm.png)     
