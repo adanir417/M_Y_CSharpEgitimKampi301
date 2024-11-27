@@ -36,7 +36,7 @@ namespace CSharpEgitimKampi301.DataAccessLayer.Abstract
         void Update(T entity);
 
         // Delete
-        void Delete(int id);
+        void Delete(T entity);
 
 
         // Generic oluşturulduktan sonra her bir entitiy sınıfımız içinde interface oluşturup bu arkadaşı miras alıyoruz.
