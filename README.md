@@ -156,13 +156,13 @@ Bu ders sonunda DataAccessLayer içerisinde Entity'leri veritabanına kaydedecek
 5 Adet entity hazırlamıştık. Bu hazırladıklarımız içinde 1 adet IGenericDal isminde genel bir şablon ve o entity'e ait olabilecek
 özel methodların imzalarını tutacak şablonlar hazırladık. Abstract(6 Interface(1 IGenericDal + 5 IEntityNameDal)). 
 Bu imzaların kullanımının gerçekleşmesi adına sınıfları hazırladık. Repository(1 GenericRepository) + EntityFramework(5 EfEntityNameDal)
-Kuş bakışı baktığımızda ne kadar imza method varsa o kadar gerçek sınıf karşılığı var diyebilirim.
-Abstract(6 Interface(1 IGenericDal + 5 IEntityNameDal)) = Repository(1 GenericRepository) + EntityFramework(5 EfEntityNameDal)
-
-Önemli noktalar
-IGenericDal `public interface IGenericDal<T> where T : class` T tipinin sınıf kısıtlaması olduğunu belirtiyor.
-IEntityNameDal `public interface IAdminDal:IGenericDal<Admin>` Miras alırken T yerine Entity Tipi belirtiliyor.
-GenericRepository `public class GenericRepository<T> : IGenericDal<T> where T : class` T tipinin sınıf kısıtlaması olduğunu belirtiyor.
-EfEntityNameDal `public class EfAdminDal:GenericRepository<Admin>, IAdminDal` Miras alırken T yerine Entity Tipi belirtiliyor.
-
-Miras alanlar entity belirtiyor. Miras bırakanlar gönderilen tipe göre işlem yapıyor.
+Kuş bakışı baktığımızda ne kadar imza method varsa o kadar gerçek sınıf karşılığı var diyebilirim.     
+Abstract(6 Interface(1 IGenericDal + 5 IEntityNameDal)) = Repository(1 GenericRepository) + EntityFramework(5 EfEntityNameDal)     
+     
+Önemli noktalar     
+IGenericDal `public interface IGenericDal<T> where T : class` T tipinin sınıf kısıtlaması olduğunu belirtiyor.     
+IEntityNameDal `public interface IAdminDal:IGenericDal<Admin>` Miras alırken T yerine Entity Tipi belirtiliyor.    
+GenericRepository `public class GenericRepository<T> : IGenericDal<T> where T : class` T tipinin sınıf kısıtlaması olduğunu belirtiyor.    
+EfEntityNameDal `public class EfAdminDal:GenericRepository<Admin>, IAdminDal` Miras alırken T yerine Entity Tipi belirtiliyor.    
+     
+Miras alanlar entity belirtiyor. Miras bırakanlar gönderilen tipe göre işlem yapıyor.      
