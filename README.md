@@ -207,4 +207,22 @@ Category
 **7**|**Oyuncak**|**false**|     
 
 
-FrmCategory isimli formumuzun butonlarını yazdık ve işlevsel hale getirdik.
+FrmCategory isimli formumuzun butonlarını yazdık ve işlevsel hale getirdik.      
+Category tablosuna ekleme işlemine üşenenler için toplum hizmeti.     
+     
+VeritabanıAdı.dbo.TabloAdı     
+denemeilkdatabase.dbo.CategoriesDeneme      
+     
+kısmını kendinize göre düzenleyip query'i çalıştırırsanız kategorileriniz eklenecektir.     
+
+```sql
+INSERT INTO EgitimKampi301Db.dbo.Categories (CategoryName,CategoryStatus) 
+VALUES
+('Yiyecek','1'),
+('İçecek','1'),
+('Kırtasiye','1'),
+('Beyaz Eşya','0'),
+('Bitkiler','1'),
+('Kıyafetler','1'),
+('Oyuncak','0');
+```

@@ -1,0 +1,9 @@
+--INSERT INTO EgitimKampi301Db.dbo.Categories (CategoryName,CategoryStatus) 
+--VALUES
+--('Yiyecek','1'),
+--('İçecek','1'),
+--('Kırtasiye','1'),
+--('Beyaz Eşya','0'),
+--('Bitkiler','1'),
+--('Kıyafetler','1'),
+--('Oyuncak','0');
