@@ -175,4 +175,36 @@ Concrete içerisine ise bu imza metodların işlevsel hale geleceği ve Business
 birlikte yer alacağı EntityADIManager.cs isim şablonu ile business logic'e ihtiyaç duyan her bir entity için bir manager sınıfı oluşturduk.
 Bu Manager sınıfları kendi adlarını içeren servisleri miras aldı ve miras aldığı metodları implemente etti. Manager sınıfları içerisinde oluşturulan
 IProductDal, IOrderDal Objesi oluşturduk ve bir yapılandırıcı method ile atamasını yaptık. Burada DependencyInjection konusu gelecek...       
-Oluşturduğumuz obje ile methodları logic(mantık) sorgularını geçerse işleyecek yapıyı kurduk. 
+Oluşturduğumuz obje ile methodları logic(mantık) sorgularını geçerse işleyecek yapıyı kurduk.    
+
+
+### :green_circle: Ders 20 - Dependency Injection        
+Dependency injection kısmını sunum katmanımızda yapılandırıcı methoda istenen objeyi vererek gerçekleştirdik. Taklit kategorilerimizi ekledik.
+
+```csharp
+
+ICategoryDal categoryDal = new EfCategoryDal();
+_categoryService = new CategoryManager(categoryDal);
+
+ VEYA
+
+ _categoryService = new CategoryManager(new EfCategoryDal());
+
+```
+ 
+|Tablo adı|
+|:--:|
+Category
+
+|CategoryId|CategoryName|CategoryStatus|
+|:--:|:--:|:--:|
+**1**|**Yiyecek**|**true**|
+**2**|**İçecek**|**true**|
+**3**|**Kırtasiye**|**true**|
+**4**|**Beyaz Eşya**|**false**|
+**5**|**Bitkiler**|**true**|
+**6**|**Kıyafetler**|**true**|
+**7**|**Oyuncak**|**false**|     
+
+
+FrmCategory isimli formumuzun butonlarını yazdık ve işlevsel hale getirdik.
