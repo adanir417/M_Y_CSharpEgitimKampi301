@@ -210,8 +210,8 @@ Category
 FrmCategory isimli formumuzun butonlarını yazdık ve işlevsel hale getirdik.      
 Category tablosuna ekleme işlemine üşenenler için toplum hizmeti.     
      
-VeritabanıAdı.dbo.TabloAdı     
-denemeilkdatabase.dbo.CategoriesDeneme      
+VeritabanıAdı.dbo.TabloAdı      
+EgitimKampi301Db.dbo.Categories          
      
 kısmını kendinize göre düzenleyip query'i çalıştırırsanız kategorileriniz eklenecektir.     
 
