@@ -166,3 +166,13 @@ GenericRepository `public class GenericRepository<T> : IGenericDal<T> where T : 
 EfEntityNameDal `public class EfAdminDal:GenericRepository<Admin>, IAdminDal` Miras alırken T yerine Entity Tipi belirtiliyor.    
      
 Miras alanlar entity belirtiyor. Miras bırakanlar gönderilen tipe göre işlem yapıyor.      
+
+
+### :green_circle: Ders 19 - Business Katmanı ve Logic Kurallar     
+BusinessLayer içerisine Abstract ve Concrete olmak üzere iki klasör tanımladık. Bunlardan Abstract içerisine gelen IGenericService, 
+IGenericDal'ın içerdiği metodları içerecek ve DataAccessLayer için bir köprü olacak.Daha sonra IGenericService'i miras alacak entity(IEntityADIService) interfacelerini yazdık.
+Concrete içerisine ise bu imza metodların işlevsel hale geleceği ve Business Logic ile 
+birlikte yer alacağı EntityADIManager.cs isim şablonu ile business logic'e ihtiyaç duyan her bir entity için bir manager sınıfı oluşturduk.
+Bu Manager sınıfları kendi adlarını içeren servisleri miras aldı ve miras aldığı metodları implemente etti. Manager sınıfları içerisinde oluşturulan
+IProductDal, IOrderDal Objesi oluşturduk ve bir yapılandırıcı method ile atamasını yaptık. Burada DependencyInjection konusu gelecek...       
+Oluşturduğumuz obje ile methodları logic(mantık) sorgularını geçerse işleyecek yapıyı kurduk. 
