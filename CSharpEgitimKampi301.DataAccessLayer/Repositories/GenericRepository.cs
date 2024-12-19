@@ -3,7 +3,10 @@ using CSharpEgitimKampi301.DataAccessLayer.Context;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Core;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,13 +33,13 @@ namespace CSharpEgitimKampi301.DataAccessLayer.Repositories
             deletedEntity.State = EntityState.Deleted;
             kampContext.SaveChanges();
 
-           
-            
+
+
         }
 
         public List<T> GetAll()
         {
-           return _object.ToList();
+            return _object.ToList();
         }
 
         public T GetById(int id)
@@ -53,9 +56,11 @@ namespace CSharpEgitimKampi301.DataAccessLayer.Repositories
 
         public void Update(T entity)
         {
-           var updatedEntity = kampContext.Entry(entity);
+            var updatedEntity = kampContext.Entry(entity);
             updatedEntity.State = EntityState.Modified;
             kampContext.SaveChanges();
+
+
         }
     }
 }

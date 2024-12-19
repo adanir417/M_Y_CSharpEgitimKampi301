@@ -5,13 +5,14 @@
 Murat YÜCEDAĞ [C# Eğitim Kampı](https://www.youtube.com/playlist?list=PLKnjBHu2xXNPmFMvGKVHA_ijjrgUyNIXr)     
 Check original repository => [C# Eğitim Kampı Original Repository](https://github.com/MuratYucedag/CSharpEgitimKampi)    
 Check original repository => [C# Eğitim Kampı Original Repository - Part 2](https://github.com/MuratYucedag/CSharpEgitimKampi301)    
+Check original repository => [C# Eğitim Kampı Original Repository - Part 3](https://github.com/MuratYucedag/CSharpEgitimKampi501)    
 
 ---
 
 
 
 ## Dersler
-### Module 301 - Continue    
+### Module 301 - Completed    
 ---    
 ### :green_circle: Ders 11 - OOP Modülü: C# ile N Katmanlı Mimari Entity Layer    
 Boş bir solution içinde katmanlar nasıl eklenir?, Entity içinde tablolara karşılık gelecek sınıflar nasıl oluşturulur?,    
@@ -213,7 +214,7 @@ Category tablosuna ekleme işlemine üşenenler için toplum hizmeti.
 VeritabanıAdı.dbo.TabloAdı      
 EgitimKampi301Db.dbo.Categories          
      
-kısmını kendinize göre düzenleyip query'i çalıştırırsanız kategorileriniz eklenecektir.     
+Tabloya erişilen yol kısmını kendinize göre düzenleyip query'i çalıştırırsanız kategorileriniz eklenecektir.     
 
 ```sql
 INSERT INTO EgitimKampi301Db.dbo.Categories (CategoryName,CategoryStatus) 
@@ -225,4 +226,137 @@ VALUES
 ('Bitkiler','1'),
 ('Kıyafetler','1'),
 ('Oyuncak','0');
-```
+```     
+
+### :green_circle: Ders 21 - Entitye Özgü Metot Yazmak      
+
+FrmProduct formumuzu oluşturarak Programs.cs içindeki başlatma bölümünü ayarladık. Taklit ürünlerimizi ekledik.
+
+|Tablo adı|
+|:--:|
+Product
+
+|ProductId|ProductName|ProductStock|ProductPrice|ProductDescription|CategoryId|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+**1**|**Makarna**|**50**|**10**|**test**|**1**|
+**2**|**Pasta**|**20**|**25**|**test**|**1**|
+**3**|**Portakal**|**100**|**5**|**test**|**1**|
+**4**|**Su**|**250**|**1**|**test**|**2**|
+**5**|**Çam Ağacı**|**60**|**10**|**test**|**5**|
+**6**|**Kazak**|**50**|**12**|**test**|**6**|
+**7**|**Çorap**|**300**|**2**|**deneme**|**6**|
+**8**|**Top Seti**|**20**|**10**|**test**|**7**|
+**9**|**Limonata**|**25**|**30**|**test**|**2**|
+**10**|**Etek**|**10**|**15**|**test**|**6**|
+       
+Kategorileri el ile girmek istemeyenler için toplum hizmeti :)    
+
+```sql
+INSERT INTO EgitimKampi301Db.dbo.Products 
+(ProductName,ProductStock,ProductPrice,ProductDescription,CategoryId) 
+VALUES 
+('Makarna','50','10','test','1'),
+('Pasta','20','25','test','1'),
+('Portakal','100','5','test','1'),
+('Su','250','1','test','2'),
+('Çam Ağacı','60','10','test','5'),
+('Kazak','50','12','test','6'),
+('Çorap','300','2','deneme','6'),
+('Top Seti','20','10','test','7'),
+('Limonata','25','30','test','2'),
+('Etek','10','15','test','6');
+```   
+
+DataAccessLayer.Abstract.IProductDal içerisine yeni bir imza method tanımlıyoruz ve DataAccessLayer.EntityFramework.EfProductDal içerisine bu metodu dolduruyoruz.    
+
+DataAccessLayer.Abstract.IProductDal
+```csharp
+using CSharpEgitimKampi301.EntityLayer.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharpEgitimKampi301.DataAccessLayer.Abstract
+{
+    public interface IProductDal:IGenericDal<Product>
+    {
+        List<Object> GetProductsWithCategory();
+    }
+}
+```     
+
+DataAccessLayer.EntityFramework.EfProductDal    
+```csharp
+using CSharpEgitimKampi301.DataAccessLayer.Abstract;
+using CSharpEgitimKampi301.DataAccessLayer.Context;
+using CSharpEgitimKampi301.DataAccessLayer.Repositories;
+using CSharpEgitimKampi301.EntityLayer.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharpEgitimKampi301.DataAccessLayer.EntityFramework
+{
+    public class EfProductDal : GenericRepository<Product>, IProductDal
+    {
+        public List<Object> GetProductsWithCategory()
+        {
+            var context = new KampContext();
+            var values = context.Products.Select(x => new { 
+            ProductId = x.ProductId,
+            ProductName = x.ProductName,
+            ProductStock = x.ProductStock,
+            ProductPrice = x.ProductPrice,
+            ProductDescription = x.ProductDescription,
+            CategoryName = x.Category.CategoryName
+            }).ToList();
+
+            return values.Cast<object>().ToList();
+        }
+    }
+}
+
+```    
+
+DataAccessLayer işlemleri bittikten sonra Business katmanına işliyoruz.   
+
+BusinessLayer.Abstract.IProductService     
+```csharp
+using CSharpEgitimKampi301.EntityLayer.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharpEgitimKampi301.BusinessLayer.Abstract
+{
+    public interface IProductService:IGenericService<Product>
+    {
+        List<object> TGetProductsWithCategory();
+    }
+}
+
+```    
+
+BusinessLayer.Abstract.ProductManager
+```csharp
+  public List<object> TGetProductsWithCategory()
+        {
+            return _productDal.GetProductsWithCategory();
+        }
+```    
+
+
+Geri kalan buton metotlarımızı tamamladık ve çalıştığına emin olarak projemizi bitirdik ve Dapper isimli ORM aracına geçiş yapıyoruz...    
+
+### :green_circle: Ders 22 - C# ile Dapper Kullanımı    
+[Ders 22 ve sonrası için link üzerinden devam - https://github.com/adanir417/CSharpEgitimKampi501 ](https://github.com/adanir417/CSharpEgitimKampi501)
+
+
+
+
